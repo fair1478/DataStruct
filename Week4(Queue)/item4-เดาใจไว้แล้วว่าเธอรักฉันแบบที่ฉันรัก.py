@@ -65,3 +65,7 @@ elif kanan >=0:
 else:
     print(f"No! We're just friends. : Score is {kanan}.")
 
+
+
+
+

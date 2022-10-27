@@ -28,3 +28,5 @@ for i in inp:
         else:
             print("-1")
 print("Number in Queue is : ",queue.item) if not queue.isEmpty() else print("Empty") 
+
+
