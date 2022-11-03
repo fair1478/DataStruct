@@ -1,34 +1,23 @@
+def findSumPower(data,index,size):
+    if index >= size:
+        return 0
 
+    sum = findSumPower(data,2*index+1,size)
+    sum += findSumPower(data,2*index+2,size) + data[index]
+    return sum
 
 inp_ = input("Enter Input : ").split('/')
 lst = list(map(int, inp_[0].split()))
-# 5 4 4 3 2 2 2
-# 0 1 2 3 4 5 6
-# 2n+1 , 2n + 2
 print(sum(lst))
-for q in inp_[1].split(','):
-    x,y = list(map(int, q.split()))
-    #print(2*x+1, 2*x+2)
-    temp1 = lst[x]
-    print(x, end='')
-    i = x
-    while 2*i+1 < len(lst):
-        if 2*x+1 < len(lst):    
-            temp1 += lst[2*x+1]
-        if 2*x+2 < len(lst):
-            temp1 += lst[2*x+2]
-        
-        temp2 = lst[y]
-        if 2*y+1 < len(lst):
-            temp2 += lst[2*y+1]
-        if 2*y+2 < len(lst):
-            temp2 += lst[2*y+2]
-        
-    print(temp1 , temp2)
+for i in inp_[1].split(","):
+    i = i.split()
+    temp1 = findSumPower(lst,int(i[0]),len(lst))
+    temp2 = findSumPower(lst,int(i[1]),len(lst))
+    print(i[0],end='')
     if temp1 == temp2:
         print("=", end='')
     elif temp1<temp2:
         print("<", end='')
     else:
         print(">", end='')
-    print(y)
+    print(i[1])
