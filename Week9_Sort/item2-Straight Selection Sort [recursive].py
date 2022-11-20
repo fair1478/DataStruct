@@ -1,23 +1,28 @@
-haveNotCur = True
-cur = None
-def StraightSelectionSort(i,lis):
-    global haveNotCur
-    global cur
-    if i < 0 :
+def searchMaxIndex(array,j,i=0):
+
+    if i == j:
+        return i
+
+    temp = searchMaxIndex(array,j,i+1)
+
+    return i if array[i] > array[temp] else temp
+
+def StraightSelectionSort(lis,index):
+    
+    if index == 0 :
         return
     
-    if lis[i] < lis[i+1] and haveNotCur:
-        StraightSelectionSort(i-1,lis)
-        cur = i
-        haveNotCur = False
+    temp = searchMaxIndex(lis,index)
 
-    if lis[cur] < lis[cur+1] and not haveNotCur:
-        StraightSelectionSort(i-1,lis)
-
-    lis[i] ,lis[cur]  = lis[cur] ,lis[i]
+    if temp != index:
     
-    print(lis)
+        lis[temp], lis[index] = lis[index], lis[temp]
+        print(f"swap {lis[temp]} <-> {lis[index]} :",lis)
 
-lis= [5,4,3,1,2]
+    StraightSelectionSort(lis,index-1)
 
-StraightSelectionSort(len(lis)-2,lis)
+lis = list(map(int,input("Enter Input : ").split()))
+
+StraightSelectionSort(lis,len(lis)-1)
+
+print(lis)
