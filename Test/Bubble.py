@@ -1,17 +1,17 @@
-def Bubble(index,lis):
+def Bubble(lis,last,index=0):
 
-    if index < 0 :
+    if index == last :
         return
     
-    Bubble(index-1,lis)
     if lis[index] > lis[index+1]:
         lis[index],lis[index+1] = lis[index+1],lis[index]
+    Bubble(lis,last,index+1)
 
-    Bubble(index-1,lis)
-    if lis[index] > lis[index+1]:
-        lis[index],lis[index+1] = lis[index+1],lis[index]
+    last = index
+    Bubble(lis,last,0)
 
     return lis
+
 
 def BubbleLoop(lis):
 
@@ -25,5 +25,5 @@ def BubbleLoop(lis):
 inp = [3,2,1,5,6,7] or input("Enter : ").split()
 inp = list(map(int,inp))
 inp2 = inp.copy()
-print(Bubble(len(inp)-2,inp))
+print(Bubble(inp,len(inp)-1))
 print(BubbleLoop(inp2))
